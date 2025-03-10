@@ -22,7 +22,7 @@ function sendMessage(){
 
     div.appendChild(divMessage)
 
-    document.querySelector('textarea').value = ""
+    document.querySelector('textarea').value = ''
     div.scrollTop = div.scrollHeight;
 
 
