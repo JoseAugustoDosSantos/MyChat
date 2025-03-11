@@ -1,7 +1,7 @@
 require('dotenv').config()
 const WebSocket = require('ws')
 const wss = new WebSocket.Server({
-    port: process.env.PORT
+    port: process.env.PORT || 3000
 })
 
 function onMessage(ws, data){

@@ -71,10 +71,17 @@ textarea {
     padding-top: 5px;
 }
 
-.divMessage {
+.divMessageSend {
     display: flex;
     justify-self: end;
     margin-right: 10px;
+    width: fit-content;
+}
+
+.divMessageReceived{
+    display: flex;
+    justify-self: start;
+    margin-left: 10px;
     width: fit-content;
 }
 
