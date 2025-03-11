@@ -1,36 +1,34 @@
 function sendMessage() {
     let text = document.querySelector('textarea').value
 
-    if (text.trim() !== '') {
-        let div = document.querySelector('div.sentText')
+    let div = document.querySelector('div.sentText')
 
-        const img = document.createElement('img')
-        img.setAttribute('src', './img/user.png');
-        img.className = 'imgIconClient'
 
-        const textBallon = document.createElement('div')
-        const textParagraph = document.createElement('p')
-        textParagraph.innerHTML = text
-        textBallon.appendChild(textParagraph)
-        textBallon.className = 'chatBallon'
+    const img = document.createElement('img')
+    img.setAttribute('src', './img/user.png');
+    img.className = 'imgIconClient'
 
-        const divMessage = document.createElement('div')
-        divMessage.className = 'divMessageSend'
-        divMessage.appendChild(textBallon)
-        divMessage.appendChild(img)
+    const textBallon = document.createElement('div')
+    const textParagraph = document.createElement('p')
+    textParagraph.innerHTML = text
+    textBallon.appendChild(textParagraph)
+    textBallon.className = 'chatBallon'
 
-        div.appendChild(divMessage)
-        socket.send(text)
-        document.querySelector('textarea').value = ''
-        div.scrollTop = div.scrollHeight;
-    }
-    else{
-        document.querySelector('textarea').value = ''
-    }
+    const divMessage = document.createElement('div')
+    divMessage.className = 'divMessageSend'
+    divMessage.appendChild(textBallon)
+    divMessage.appendChild(img)
+
+
+    div.appendChild(divMessage)
+    socket.send(text)
+    document.querySelector('textarea').value = ''
+    div.scrollTop = div.scrollHeight;
 }
 
-function messageReceivedSocket(event) {
+function messageReceivedSocket(event){
     let div = document.querySelector('div.sentText')
+
 
     const img = document.createElement('img')
     img.setAttribute('src', './img/user.png');
@@ -46,23 +44,11 @@ function messageReceivedSocket(event) {
     divMessage.className = 'divMessageReceived'
     divMessage.appendChild(img)
     divMessage.appendChild(textBallon)
-
+    
     div.appendChild(divMessage)
     document.querySelector('textarea').value = ''
     div.scrollTop = div.scrollHeight;
 }
-
-document.addEventListener('keypress', function (event) {
-    if(event.key === 'Enter' ){
-        if(event.shiftKey){
-            console.log("apertei os dois")
-        }
-        else{
-            event.preventDefault()
-            sendMessage()
-        }
-    }
-})
 
 const socket = new WebSocket('ws://localhost:3000');
 socket.onopen = () => console.log('Conectado com sucesso!');
